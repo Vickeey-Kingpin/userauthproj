@@ -1,0 +1,94 @@
+{% load static %}
+<style>    
+    body{
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        background: url("{% static 'assets/img/food.jpg' %}") no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .wrapper{
+        width: 420px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, .2);
+        backdrop-filter: blur(10px);
+        color: white;
+        border-radius: 12px;
+        padding: 30px 40px;
+    }
+    .wrapper .message{
+        color: red;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-style: italic;
+        font-size: 20px;
+        } 
+    .wrapper h1{
+        font-size: 36px;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .wrapper .input_box{
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+    }
+    .input_box input{
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 40px ;
+        padding: 20px 45px 20px 20px;
+    }
+    .input_box input::placeholder{
+        color: white;
+    }
+    .wrapper a{
+        text-decoration: none;
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .wrapper a:hover{
+        text-decoration: underline;
+    }
+    .wrapper .btn{
+        width: 100%;
+        height: 45px;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        font-size: 16px;
+        cursor: pointer;
+        color: #333;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+    .wrapper .register_link{
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14.5px;
+    }
+
+</style>
+<div class="wrapper">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Create Account here</h1>
+        <div class="input_box"><input type="text" name="firstname" placeholder="Enter your firstname" /></div>
+        <div class="input_box"><input type="text" name="lastname" placeholder="Enter your lastname" /></div>
+        <div class="input_box"><input type="email" name="email" placeholder="Input your email" /></div>
+        <div class="input_box"><input type="password" name="password" placeholder="Create your 8 character password"/></div>
+        <div class="input_box"><input type="password" name="password2" placeholder="Confirm your password" /><br><br></div>
+            <div class="message">
+                {% for message in messages %}
+                <h5>{{message}}</h5>
+                {% endfor %}
+            </div>
+        <button type="submit" class="btn">Register</button><br>
+        <div class="register_link"><p>Already have an account? <a href="/login">Login</a></p></div>
+    </form>
+</div>
